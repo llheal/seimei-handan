@@ -159,38 +159,38 @@ export function calculateOverallScore(fiveGrids, threeElements, yinYang) {
         fiveGridScore += score * weights[grid];
     });
 
-    // --- 三才配置スコア (25%) ---
+    // --- 三才配置スコア (15%) ---
     let sansaiScore = 60; // デフォルト
     if (threeElements && threeElements.fortune) {
         const r = threeElements.fortune.rating;
         switch (r) {
             case '大吉': sansaiScore = 100; break;
-            case '吉': sansaiScore = 80; break;
-            case '中吉': sansaiScore = 70; break;
-            case '小吉': sansaiScore = 65; break;
-            case '吉凶混合': sansaiScore = 50; break;
-            case '凶': sansaiScore = 30; break;
-            case '大凶': sansaiScore = 15; break;
-            default: sansaiScore = 50;
+            case '吉': sansaiScore = 85; break;
+            case '中吉': sansaiScore = 75; break;
+            case '小吉': sansaiScore = 70; break;
+            case '吉凶混合': sansaiScore = 55; break;
+            case '凶': sansaiScore = 35; break;
+            case '大凶': sansaiScore = 20; break;
+            default: sansaiScore = 55;
         }
     }
 
-    // --- 陰陽配列スコア (15%) ---
+    // --- 陰陽配列スコア (10%) ---
     let yinYangScore = 60; // デフォルト
     if (yinYang) {
         const r = yinYang.rating;
         switch (r) {
             case '大吉': yinYangScore = 100; break;
-            case '吉': yinYangScore = 80; break;
-            case '吉凶混合': yinYangScore = 55; break;
-            case '凶': yinYangScore = 30; break;
-            case '大凶': yinYangScore = 15; break;
-            default: yinYangScore = 50;
+            case '吉': yinYangScore = 85; break;
+            case '吉凶混合': yinYangScore = 60; break;
+            case '凶': yinYangScore = 35; break;
+            case '大凶': yinYangScore = 20; break;
+            default: yinYangScore = 55;
         }
     }
 
-    // 重み付き合計: 五格60% + 三才25% + 陰陽15%
-    const total = fiveGridScore * 0.60 + sansaiScore * 0.25 + yinYangScore * 0.15;
+    // 重み付き合計: 五格75% + 三才15% + 陰陽10%
+    const total = fiveGridScore * 0.75 + sansaiScore * 0.15 + yinYangScore * 0.10;
     return Math.round(total);
 }
 
