@@ -7,7 +7,7 @@
 export const MALE_HEAD = [
     { kanji: '大', readings: ['だい', 'ひろ'], strokes: 3 },
     { kanji: '悠', readings: ['ゆう', 'はる'], strokes: 11 },
-    { kanji: '陽', readings: ['はる', 'ひな'], strokes: 12 },
+    { kanji: '陽', readings: ['はる', 'よう'], strokes: 12 },
     { kanji: '翔', readings: ['しょう', 'かける'], strokes: 12 },
     { kanji: '蓮', readings: ['れん'], strokes: 13 },
     { kanji: '颯', readings: ['そう'], strokes: 14 },
@@ -17,7 +17,6 @@ export const MALE_HEAD = [
     { kanji: '真', readings: ['しん', 'ま'], strokes: 10 },
     { kanji: '直', readings: ['なお'], strokes: 8 },
     { kanji: '和', readings: ['かず'], strokes: 8 },
-    { kanji: '光', readings: ['こう'], strokes: 6 },
     { kanji: '亮', readings: ['りょう'], strokes: 9 },
     { kanji: '裕', readings: ['ゆう'], strokes: 12 },
     { kanji: '雅', readings: ['まさ'], strokes: 12 },
@@ -32,14 +31,15 @@ export const MALE_HEAD = [
     { kanji: '康', readings: ['こう', 'やす'], strokes: 11 },
     { kanji: '隆', readings: ['りゅう', 'たか'], strokes: 11 },
     { kanji: '博', readings: ['ひろ'], strokes: 12 },
-    { kanji: '碧', readings: ['あお'], strokes: 14 },
     { kanji: '琉', readings: ['る'], strokes: 11 },
     { kanji: '龍', readings: ['りゅう'], strokes: 16 },
     { kanji: '慶', readings: ['けい'], strokes: 15 },
     { kanji: '賢', readings: ['けん'], strokes: 15 },
-    { kanji: '優', readings: ['ゆう'], strokes: 17 },
-    { kanji: '春', readings: ['はる'], strokes: 9 },
-    { kanji: '秋', readings: ['あき'], strokes: 9 },
+    { kanji: '明', readings: ['あき'], strokes: 8 },
+    { kanji: '剛', readings: ['ごう'], strokes: 10 },
+    { kanji: '勇', readings: ['ゆう'], strokes: 9 },
+    { kanji: '武', readings: ['たけ'], strokes: 8 },
+    { kanji: '航', readings: ['こう'], strokes: 10 },
 ];
 
 // 男の子の止め字（名前の最後の文字）
@@ -62,10 +62,10 @@ export const MALE_TAIL = [
     { kanji: '輝', readings: ['き'], strokes: 15 },
     { kanji: '希', readings: ['き'], strokes: 7 },
     { kanji: '紀', readings: ['き'], strokes: 9 },
-    { kanji: '大', readings: ['た'], strokes: 3 },
     { kanji: '陽', readings: ['ひ'], strokes: 12 },
     { kanji: '成', readings: ['なり'], strokes: 6 },
     { kanji: '仁', readings: ['と', 'じん'], strokes: 4 },
+    { kanji: '吾', readings: ['ご'], strokes: 7 },
 ];
 
 // 女の子の頭字
@@ -82,19 +82,19 @@ export const FEMALE_HEAD = [
     { kanji: '紗', readings: ['さ'], strokes: 10 },
     { kanji: '優', readings: ['ゆう', 'ゆ'], strokes: 17 },
     { kanji: '菜', readings: ['な'], strokes: 11 },
-    { kanji: '明', readings: ['あか', 'あき'], strokes: 8 },
     { kanji: '花', readings: ['はな', 'か'], strokes: 7 },
-    { kanji: '心', readings: ['ここ', 'こ'], strokes: 4 },
-    { kanji: '楓', readings: ['かえで', 'ふう'], strokes: 13 },
-    { kanji: '凛', readings: ['りん'], strokes: 15 },
+    { kanji: '心', readings: ['こ'], strokes: 4 },
     { kanji: '詩', readings: ['うた', 'し'], strokes: 13 },
     { kanji: '瑞', readings: ['みず'], strokes: 13 },
     { kanji: '琴', readings: ['こと'], strokes: 12 },
     { kanji: '雪', readings: ['ゆき'], strokes: 11 },
-    { kanji: '春', readings: ['はる'], strokes: 9 },
     { kanji: '夏', readings: ['なつ'], strokes: 10 },
     { kanji: '鈴', readings: ['すず'], strokes: 13 },
     { kanji: '柚', readings: ['ゆず', 'ゆ'], strokes: 9 },
+    { kanji: '莉', readings: ['り'], strokes: 10 },
+    { kanji: '杏', readings: ['あん'], strokes: 7 },
+    { kanji: '茉', readings: ['ま'], strokes: 8 },
+    { kanji: '芽', readings: ['め'], strokes: 8 },
 ];
 
 // 女の子の止め字
@@ -127,15 +127,15 @@ export const FEMALE_TAIL = [
 // 中性的に使える名前パターン
 export const NEUTRAL_HEAD = [
     { kanji: '光', readings: ['ひかる', 'こう'], strokes: 6 },
-    { kanji: '悠', readings: ['ゆう', 'はるか'], strokes: 11 },
     { kanji: '純', readings: ['じゅん'], strokes: 10 },
-    { kanji: '楓', readings: ['かえで'], strokes: 13 },
     { kanji: '碧', readings: ['あおい', 'あお'], strokes: 14 },
     { kanji: '凪', readings: ['なぎ'], strokes: 6 },
     { kanji: '薫', readings: ['かおる'], strokes: 16 },
     { kanji: '晶', readings: ['あきら'], strokes: 12 },
     { kanji: '涼', readings: ['りょう', 'すず'], strokes: 11 },
     { kanji: '潤', readings: ['じゅん'], strokes: 15 },
+    { kanji: '楓', readings: ['かえで'], strokes: 13 },
+    { kanji: '春', readings: ['はる'], strokes: 9 },
 ];
 
 // 一文字名（男の子）
@@ -148,26 +148,26 @@ export const MALE_SINGLE = [
     { kanji: '亮', readings: ['りょう'], strokes: 9 },
     { kanji: '駿', readings: ['しゅん'], strokes: 17 },
     { kanji: '輝', readings: ['ひかる'], strokes: 15 },
-    { kanji: '凛', readings: ['りん'], strokes: 15 },
-    { kanji: '碧', readings: ['あおい'], strokes: 14 },
     { kanji: '悠', readings: ['ゆう', 'はるか'], strokes: 11 },
     { kanji: '健', readings: ['たける'], strokes: 11 },
+    { kanji: '剛', readings: ['つよし'], strokes: 10 },
+    { kanji: '拳', readings: ['けん'], strokes: 10 },
 ];
 
 // 一文字名（女の子）
 export const FEMALE_SINGLE = [
     { kanji: '凛', readings: ['りん'], strokes: 15 },
     { kanji: '葵', readings: ['あおい'], strokes: 12 },
-    { kanji: '楓', readings: ['かえで'], strokes: 13 },
-    { kanji: '碧', readings: ['あおい', 'みどり'], strokes: 14 },
     { kanji: '桜', readings: ['さくら'], strokes: 10 },
-    { kanji: '薫', readings: ['かおる'], strokes: 16 },
     { kanji: '栞', readings: ['しおり'], strokes: 10 },
     { kanji: '渚', readings: ['なぎさ'], strokes: 11 },
     { kanji: '瞳', readings: ['ひとみ'], strokes: 15 },
     { kanji: '梢', readings: ['こずえ'], strokes: 11 },
     { kanji: '環', readings: ['たまき'], strokes: 17 },
     { kanji: '萌', readings: ['もえ'], strokes: 11 },
+    { kanji: '茜', readings: ['あかね'], strokes: 9 },
+    { kanji: '杏', readings: ['あんず'], strokes: 7 },
+    { kanji: '雫', readings: ['しずく'], strokes: 11 },
 ];
 
 export default {
