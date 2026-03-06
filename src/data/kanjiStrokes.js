@@ -2,6 +2,7 @@
 // 漢字画数データベース (Kanji Stroke Count Database)
 // 常用漢字 + 人名用漢字 の画数データ
 // ============================================================
+import { getUnihanStrokes } from './unihanStrokes.js';
 
 // 部首特殊カウントルール（姓名判断用）
 // さんずい (氵) → 水 = 4画
@@ -350,16 +351,14 @@ export function getStrokeCount(char) {
         return KANJI_STROKES[c];
     }
 
-    // CJK統合漢字のUnicode範囲チェック
+    // CJK統合漢字のUnicode範囲チェック → Unihanデータベースから正確な画数を取得
     const code = c.charCodeAt(0);
     if (code >= 0x4E00 && code <= 0x9FFF) {
-        // データベースにない漢字: UnicodeブロックベースのざっくりEstimate
-        // CJK Unified Ideographsは大まかに画数順に並んでいる
-        // 正確ではないが0画よりはるかに良い
-        const ratio = (code - 0x4E00) / (0x9FFF - 0x4E00);
-        const estimated = Math.round(4 + ratio * 16); // 4〜20画の範囲
-        console.warn(`漢字「${c}」はデータベースにありません。推定${estimated}画として計算します。`);
-        return estimated;
+        const unihanResult = getUnihanStrokes(c);
+        if (unihanResult !== null) {
+            return unihanResult;
+        }
+        return null;
     }
 
     // ひらがな (各文字の一般的な画数)
