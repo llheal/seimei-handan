@@ -152,7 +152,7 @@ function NamingPage() {
                                     const top3 = suggestions.slice(0, 3).map((s, i) =>
                                         `${['🥇', '🥈', '🥉'][i]} ${surname}${s.name}（${s.readings[0]}）${s.score}点`
                                     ).join('\n');
-                                    const shareText = `🌸 名づけ候補 🌸\n\n「${surname}」さんにおすすめの名前：\n${top3}\n\n🔮 姓名判断・名づけアプリで占いました`;
+                                    const shareText = `🌸 名づけ候補 🌸\n\n「${surname}」さんにおすすめの名前：\n${top3}\n\n🔮 あなたも占ってみませんか？\nhttps://miniapp.line.me/2009339223-6IfTVZdD`;
 
                                     if (window.liff && window.liff.isApiAvailable && window.liff.isApiAvailable('shareTargetPicker')) {
                                         try { await window.liff.shareTargetPicker([{ type: 'text', text: shareText }]); return; } catch (e) { }
