@@ -44,6 +44,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/analysis" element={<AnalysisPage />} />
                     <Route path="/naming" element={<NamingPage />} />
+                    <Route path="*" element={<HomePage />} />
                 </Routes>
                 <BottomNav />
             </div>
