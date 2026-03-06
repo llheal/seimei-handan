@@ -143,6 +143,43 @@ function NamingPage() {
                                 ))}
                             </div>
                         )}
+
+                        {/* Share section */}
+                        {suggestions.length > 0 && (
+                            <div className="share-section">
+                                <p>名づけ候補をLINEで共有しませんか？</p>
+                                <button className="btn btn-share" onClick={async () => {
+                                    const top3 = suggestions.slice(0, 3).map((s, i) =>
+                                        `${['🥇', '🥈', '🥉'][i]} ${surname}${s.name}（${s.readings[0]}）${s.score}点`
+                                    ).join('\n');
+                                    const shareText = `🌸 名づけ候補 🌸\n\n「${surname}」さんにおすすめの名前：\n${top3}\n\n🔮 姓名判断・名づけアプリで占いました`;
+
+                                    if (window.liff && window.liff.isApiAvailable && window.liff.isApiAvailable('shareTargetPicker')) {
+                                        try { await window.liff.shareTargetPicker([{ type: 'text', text: shareText }]); return; } catch (e) { }
+                                    }
+                                    if (window.liff && window.liff.isInClient && window.liff.isInClient()) {
+                                        try { await window.liff.sendMessages([{ type: 'text', text: shareText }]); return; } catch (e) { }
+                                    }
+                                    if (navigator.share) {
+                                        try { await navigator.share({ title: '名づけ候補', text: shareText }); return; } catch (e) { }
+                                    }
+                                    try {
+                                        await navigator.clipboard.writeText(shareText);
+                                        alert('候補をコピーしました！');
+                                    } catch (e) {
+                                        const ta = document.createElement('textarea');
+                                        ta.value = shareText;
+                                        document.body.appendChild(ta);
+                                        ta.select();
+                                        document.execCommand('copy');
+                                        document.body.removeChild(ta);
+                                        alert('候補をコピーしました！');
+                                    }
+                                }}>
+                                    💬 LINEで共有する
+                                </button>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

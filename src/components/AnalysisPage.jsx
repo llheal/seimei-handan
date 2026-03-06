@@ -52,17 +52,50 @@ function AnalysisPage() {
         setOpenGrids(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
-    const handleShare = () => {
-        if (typeof window !== 'undefined' && window.liff && window.liff.isInClient()) {
-            window.liff.sendMessages([{
-                type: 'text',
-                text: `🌸 姓名判断の結果 🌸\n\n【${surname} ${givenName}】\n総合スコア: ${result.score}点（${result.evaluation.label}）\n\n天格 ${result.fiveGrids.tenkaku.value}画（${result.fiveGrids.tenkaku.rating}）\n人格 ${result.fiveGrids.jinkaku.value}画（${result.fiveGrids.jinkaku.rating}）\n地格 ${result.fiveGrids.chikaku.value}画（${result.fiveGrids.chikaku.rating}）\n外格 ${result.fiveGrids.gaikaku.value}画（${result.fiveGrids.gaikaku.rating}）\n総格 ${result.fiveGrids.soukaku.value}画（${result.fiveGrids.soukaku.rating}）\n\n三才配置: ${result.threeElements?.combination || '-'}（${result.threeElements?.fortune?.rating || '-'}）\n\n🔮 姓名判断・名づけアプリで占いました`
-            }]).catch(() => { });
-        } else {
-            // ブラウザでの動作 - クリップボードにコピー
-            const text = `🌸 姓名判断の結果 🌸\n${surname} ${givenName}\n総合スコア: ${result.score}点（${result.evaluation.label}）`;
-            navigator.clipboard?.writeText(text);
-            alert('判断結果をクリップボードにコピーしました');
+    const handleShare = async () => {
+        const shareText = `🌸 姓名判断の結果 🌸\n\n【${surname} ${givenName}】\n総合スコア: ${result.score}点（${result.evaluation.label}）\n\n天格 ${result.fiveGrids.tenkaku.value}画（${result.fiveGrids.tenkaku.rating}）\n人格 ${result.fiveGrids.jinkaku.value}画（${result.fiveGrids.jinkaku.rating}）\n地格 ${result.fiveGrids.chikaku.value}画（${result.fiveGrids.chikaku.rating}）\n外格 ${result.fiveGrids.gaikaku.value}画（${result.fiveGrids.gaikaku.rating}）\n総格 ${result.fiveGrids.soukaku.value}画（${result.fiveGrids.soukaku.rating}）\n\n🔮 姓名判断・名づけアプリで占いました`;
+
+        // 1. shareTargetPicker（友だち選択して送信）
+        if (window.liff && window.liff.isApiAvailable && window.liff.isApiAvailable('shareTargetPicker')) {
+            try {
+                await window.liff.shareTargetPicker([{
+                    type: 'text',
+                    text: shareText,
+                }]);
+                return;
+            } catch (e) {
+                console.warn('shareTargetPicker failed:', e);
+            }
+        }
+        // 2. sendMessages（LINE内のみ）
+        if (window.liff && window.liff.isInClient && window.liff.isInClient()) {
+            try {
+                await window.liff.sendMessages([{ type: 'text', text: shareText }]);
+                return;
+            } catch (e) {
+                console.warn('sendMessages failed:', e);
+            }
+        }
+        // 3. Web Share API
+        if (navigator.share) {
+            try {
+                await navigator.share({ title: '姓名判断の結果', text: shareText });
+                return;
+            } catch (e) { /* user cancelled */ }
+        }
+        // 4. クリップボード
+        try {
+            await navigator.clipboard.writeText(shareText);
+            alert('判断結果をコピーしました！');
+        } catch (e) {
+            // 最終フォールバック: テキストエリアを使ったコピー
+            const ta = document.createElement('textarea');
+            ta.value = shareText;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            alert('判断結果をコピーしました！');
         }
     };
 
