@@ -129,7 +129,7 @@ function evaluateCandidate(surname, givenName) {
         const yinYang = analyzeYinYang(surname, givenName);
 
         // AnalysisPage と同じ calculateOverallScore を使用
-        const score = calculateOverallScore(fiveGrids);
+        const score = calculateOverallScore(fiveGrids, threeElements, yinYang);
 
         return {
             score,

@@ -129,20 +129,22 @@ export function calculateFiveGrids(surname, givenName) {
 
 /**
  * 五格の総合スコアを計算(0-100)
+ * 三才配置・陰陽配列も加味する
  */
-export function calculateOverallScore(fiveGrids) {
+export function calculateOverallScore(fiveGrids, threeElements, yinYang) {
     if (!fiveGrids) return 0;
 
+    // --- 五格スコア (60%) ---
     const grids = ['tenkaku', 'jinkaku', 'chikaku', 'gaikaku', 'soukaku'];
     const weights = {
-        tenkaku: 0.10, // 天格は変えられないので重みを低く
-        jinkaku: 0.30, // 最重要
+        tenkaku: 0.10,
+        jinkaku: 0.30,
         chikaku: 0.20,
         gaikaku: 0.15,
         soukaku: 0.25
     };
 
-    let totalScore = 0;
+    let fiveGridScore = 0;
     grids.forEach(grid => {
         const rating = fiveGrids[grid].rating;
         let score;
@@ -154,10 +156,42 @@ export function calculateOverallScore(fiveGrids) {
             case '大凶': score = 20; break;
             default: score = 50;
         }
-        totalScore += score * weights[grid];
+        fiveGridScore += score * weights[grid];
     });
 
-    return Math.round(totalScore);
+    // --- 三才配置スコア (25%) ---
+    let sansaiScore = 60; // デフォルト
+    if (threeElements && threeElements.fortune) {
+        const r = threeElements.fortune.rating;
+        switch (r) {
+            case '大吉': sansaiScore = 100; break;
+            case '吉': sansaiScore = 80; break;
+            case '中吉': sansaiScore = 70; break;
+            case '小吉': sansaiScore = 65; break;
+            case '吉凶混合': sansaiScore = 50; break;
+            case '凶': sansaiScore = 30; break;
+            case '大凶': sansaiScore = 15; break;
+            default: sansaiScore = 50;
+        }
+    }
+
+    // --- 陰陽配列スコア (15%) ---
+    let yinYangScore = 60; // デフォルト
+    if (yinYang) {
+        const r = yinYang.rating;
+        switch (r) {
+            case '大吉': yinYangScore = 100; break;
+            case '吉': yinYangScore = 80; break;
+            case '吉凶混合': yinYangScore = 55; break;
+            case '凶': yinYangScore = 30; break;
+            case '大凶': yinYangScore = 15; break;
+            default: yinYangScore = 50;
+        }
+    }
+
+    // 重み付き合計: 五格60% + 三才25% + 陰陽15%
+    const total = fiveGridScore * 0.60 + sansaiScore * 0.25 + yinYangScore * 0.15;
+    return Math.round(total);
 }
 
 /**

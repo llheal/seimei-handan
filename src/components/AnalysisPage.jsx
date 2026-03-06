@@ -21,7 +21,7 @@ function AnalysisPage() {
 
         const threeElements = analyzeThreeElements(fiveGrids);
         const yinYang = analyzeYinYang(s, g);
-        const score = calculateOverallScore(fiveGrids);
+        const score = calculateOverallScore(fiveGrids, threeElements, yinYang);
         const evaluation = getOverallEvaluation(score);
 
         setResult({ fiveGrids, threeElements, yinYang, score, evaluation });
