@@ -94,7 +94,15 @@ function HomePage() {
 
                 {/* Footer */}
                 <div style={{ textAlign: 'center', fontSize: '0.6rem', color: '#A09888', paddingTop: '4px' }}>
-                    © 2026 姓名判断・名づけ
+                    <div style={{ marginBottom: '4px' }}>
+                        <a href="/privacy.html" target="_blank" rel="noopener" style={{ color: '#7A7267', textDecoration: 'none', marginRight: '12px' }}>
+                            プライバシーポリシー
+                        </a>
+                        <a href="/terms.html" target="_blank" rel="noopener" style={{ color: '#7A7267', textDecoration: 'none' }}>
+                            利用規約
+                        </a>
+                    </div>
+                    © 2026 UNIIS公式通販
                 </div>
             </div>
         </div>
