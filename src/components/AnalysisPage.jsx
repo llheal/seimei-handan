@@ -180,7 +180,7 @@ function AnalysisPage() {
 
                         {/* Score */}
                         <div className="score-display">
-                            <div className="score-number">{result.score}<span style={{ fontSize: '0.4em', fontWeight: 400, opacity: 0.7 }}>/100点</span></div>
+                            <div className="score-number">{result.score}<span style={{ fontSize: '0.35em', fontWeight: 400, WebkitTextFillColor: '#FFD700', opacity: 0.6 }}>/100点</span></div>
                             <div className="score-label">総合スコア</div>
                             <div className="score-evaluation">
                                 <span className="score-evaluation-label">{result.evaluation.label}</span>
