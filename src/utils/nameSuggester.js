@@ -20,7 +20,7 @@ import {
 export function suggestNames(surname, options = {}) {
     const {
         gender = 'neutral',
-        maxResults = 20,
+        maxResults = 100,
     } = options;
 
     if (!surname) return [];
