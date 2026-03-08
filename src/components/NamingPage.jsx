@@ -19,7 +19,7 @@ function NamingPage() {
         setTimeout(() => {
             const results = suggestNames(surname.trim(), {
                 gender,
-                maxResults: 30,
+                maxResults: 100,
             });
             setSuggestions(results);
             setLoading(false);
