@@ -137,7 +137,7 @@ function NamingPage() {
                                         </div>
                                         <div className="suggestion-score">
                                             <div className="suggestion-score-num">{item.score}</div>
-                                            <div className="suggestion-score-label">点</div>
+                                            <div className="suggestion-score-label">/100点</div>
                                         </div>
                                     </div>
                                 ))}
@@ -150,7 +150,7 @@ function NamingPage() {
                                 <p>名づけ候補をLINEで共有しませんか？</p>
                                 <button className="btn btn-share" onClick={async () => {
                                     const top3 = suggestions.slice(0, 3).map((s, i) =>
-                                        `${['🥇', '🥈', '🥉'][i]} ${surname}${s.name}（${s.readings[0]}）${s.score}点`
+                                        `${['🥇', '🥈', '🥉'][i]} ${surname}${s.name}（${s.readings[0]}）${s.score}/100点`
                                     ).join('\n');
                                     const shareText = `🌸 名づけ候補 🌸\n\n「${surname}」さんにおすすめの名前：\n${top3}\n\n🔮 あなたも占ってみませんか？\nhttps://miniapp.line.me/2009339223-6IfTVZdD`;
 

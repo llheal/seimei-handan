@@ -53,7 +53,7 @@ function AnalysisPage() {
     };
 
     const handleShare = async () => {
-        const shareText = `🌸 姓名判断の結果 🌸\n\n【${surname} ${givenName}】\n総合スコア: ${result.score}点（${result.evaluation.label}）\n\n天格 ${result.fiveGrids.tenkaku.value}画（${result.fiveGrids.tenkaku.rating}）\n人格 ${result.fiveGrids.jinkaku.value}画（${result.fiveGrids.jinkaku.rating}）\n地格 ${result.fiveGrids.chikaku.value}画（${result.fiveGrids.chikaku.rating}）\n外格 ${result.fiveGrids.gaikaku.value}画（${result.fiveGrids.gaikaku.rating}）\n総格 ${result.fiveGrids.soukaku.value}画（${result.fiveGrids.soukaku.rating}）\n\n🔮 あなたも占ってみませんか？\nhttps://miniapp.line.me/2009339223-6IfTVZdD`;
+        const shareText = `🌸 姓名判断の結果 🌸\n\n【${surname} ${givenName}】\n総合スコア: ${result.score}/100点（${result.evaluation.label}）\n\n天格 ${result.fiveGrids.tenkaku.value}画（${result.fiveGrids.tenkaku.rating}）\n人格 ${result.fiveGrids.jinkaku.value}画（${result.fiveGrids.jinkaku.rating}）\n地格 ${result.fiveGrids.chikaku.value}画（${result.fiveGrids.chikaku.rating}）\n外格 ${result.fiveGrids.gaikaku.value}画（${result.fiveGrids.gaikaku.rating}）\n総格 ${result.fiveGrids.soukaku.value}画（${result.fiveGrids.soukaku.rating}）\n\n🔮 あなたも占ってみませんか？\nhttps://miniapp.line.me/2009339223-6IfTVZdD`;
 
         // 1. shareTargetPicker（友だち選択して送信）
         if (window.liff && window.liff.isApiAvailable && window.liff.isApiAvailable('shareTargetPicker')) {
@@ -180,7 +180,7 @@ function AnalysisPage() {
 
                         {/* Score */}
                         <div className="score-display">
-                            <div className="score-number">{result.score}</div>
+                            <div className="score-number">{result.score}<span style={{ fontSize: '0.4em', fontWeight: 400, opacity: 0.7 }}>/100点</span></div>
                             <div className="score-label">総合スコア</div>
                             <div className="score-evaluation">
                                 <span className="score-evaluation-label">{result.evaluation.label}</span>
